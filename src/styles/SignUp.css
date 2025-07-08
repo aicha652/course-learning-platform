@@ -1,0 +1,63 @@
+body {
+    background: #d1e3d8;
+}
+.signupContainer {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    width: 340px;
+    border: 1px solid #fff;
+    height: 450px;
+    border-radius: 10px;
+    margin-top: 100px;
+    margin-left: 480px;
+    margin-bottom: 400px;
+    background-color: #fff;
+}
+
+.signupContainer p {
+    font-size: 27px;
+}
+
+.signupContainer h6 {
+    margin-top: -20px;
+    color: gray;
+    margin-left: -190px;
+}
+
+label {
+    margin: 5px 5px;
+    margin-left: -270px;
+}
+
+.signupContainer input {
+    font-size: 20px;
+    margin: 5px 10px;
+}
+
+button {
+    width: 320px;
+    margin-left: 10px;
+    border: 1px solid green;
+    border-radius: 30px;
+    height: 30px;
+    background: green;
+    margin-top: 25px;
+    cursor: pointer;
+    color: #fff;
+}
+
+.signupContainer .detail {
+    display: flex;
+    justify-content: center;
+    flex-direction: row;
+}
+
+.detail h5 {
+    font-weight: 200;
+}
+
+.link {
+    text-decoration: none;
+    color : green;
+}

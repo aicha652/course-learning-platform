@@ -1,0 +1,31 @@
+.container {
+    display: flex;
+    justify-content: center;
+    flex-direction: row;
+    width: 100%;
+    background: rgb(191, 206, 191);
+    position: fixed;
+    top: 0;
+    text-decoration: none;
+}
+.container h5{
+    margin: 20px 20px;
+    cursor: pointer;
+}
+.container button{
+    margin-left: 350px;
+    margin-right: -350px;
+    margin-top: 10px;
+    padding: 10px;
+    height: 35px;
+    border: 0px solid #fff;
+    border-radius: 4px;
+    width: 100px;
+    cursor: pointer;
+    color: white;
+}
+
+.nav-link {
+    text-decoration: none;
+    color: #fff;
+}
