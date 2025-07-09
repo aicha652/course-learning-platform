@@ -7,6 +7,7 @@ import Contact from './pages/Contact';
 import Login from './components/Login';
 import SignUp from './components/SignUp';
 import Profile from './pages/Profile';
+import Dashboard from './pages/Admin/Dashboard';
 
 function App() {
   return (
@@ -19,6 +20,8 @@ function App() {
         <Route path="/login" element={<Login />} />
         <Route path="/signup" element={<SignUp />} />
         <Route path="/profile" element={<Profile />} />
+        <Route path="/dashboard" element={<Dashboard />} />
+        <Route path="/courses" element={<Courses />} />
         <Route />
       </Routes>
     </div>

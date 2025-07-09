@@ -1,0 +1,32 @@
+.dashboard {
+    position: fixed;
+    left: 0;
+    display: flex;
+    flex-direction: column;
+    background: #fff;
+    height: 100%;
+    width: 200px;
+    color: gray;
+}
+
+h4 {
+    cursor: pointer;
+}
+
+.main-container {
+    display: flex;
+    min-height: 100vh;
+}
+
+.bg {
+    background: green;
+}
+
+.normal-bg {
+    background: red;
+}
+
+
+.link {
+    text-decoration: none;
+}

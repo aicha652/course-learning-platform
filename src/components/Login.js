@@ -10,13 +10,21 @@ export default function Login() {
 
     function handleLogin(e) {
         e.preventDefault()
-
+        
         const storedUser = JSON.parse(localStorage.getItem("user"))
+        
+        const admin = {name: "aicha", email: "aicha@gmail.com", password: "1234", role: "admin"}
+        localStorage.setItem("admin", JSON.stringify(admin))
+        const storedAdmin = JSON.parse(localStorage.getItem("admin"))
 
         if(storedUser && storedUser.email == email && storedUser.password == password) {
             localStorage.setItem("isLogged", "true")
-            navigate("../profile")
-        }else {
+            navigate("/profile")
+        }else if(storedAdmin && storedAdmin.email == email && storedAdmin.password ==password && storedAdmin.role == "admin") {
+            localStorage.setItem("isLogged", "true")
+            navigate("/dashboard")
+        }
+        else {
             alert("Invalid email or password")
         }
     }
