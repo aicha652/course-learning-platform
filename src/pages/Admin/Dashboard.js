@@ -16,10 +16,10 @@ export default function Dashboard() {
                 <Link to="/dashboard" className="link" >
                 <h4 className={`main-container${location.pathname == "/dashboard"? "bg" : "normalbg"}`} ><RxDashboard />Dashboard</h4>
                 </Link>
-                <Link to="/courses" className="link">
+                <Link to="/adminCourses" className="link">
                 <h4 className={`main-container${location.pathname == "/courses"? "bg" : "normalbg"}`} ><RiBookShelfFill /> All Courses</h4>
                 </Link>
-                <h4><LiaSwatchbookSolid /> Add Course</h4>
+                <Link to="/AddCourse" ><h4><LiaSwatchbookSolid /> Add Course</h4></Link>
                 <h4 style={{ marginLeft:"-45px" }} ><FaUsersBetweenLines /> Users</h4>
                 <h4 style={{ marginLeft:"-30px" }} ><IoSettings /> Settings</h4>
            </div>

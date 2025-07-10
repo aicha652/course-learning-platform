@@ -2,13 +2,14 @@ import Navbar from "../components/Navbar.js";
 import photOne from "../assets/e-learningOne.jpg"
 import photTwo from "../assets/e-learningTwo.jpg"
 import '../styles/About.css'
+import Footer from "../components/Footer.js";
 
 export default function About() {
     return(
         <div>
             <Navbar />
             <div className="aboutContainer" >
-              <div> 
+              <div className="sectionOne">  
                 <div>
                     <h3>Our Mission</h3>
                     <p>
@@ -23,15 +24,16 @@ export default function About() {
                 </div>
                 <div>
                     <img
-                     style={{ width: "80%", height: "50%", color: "green",  borderRadius: "50%" }} 
+                     style={{ width: "500px", marginRight: "50px", borderRadius: "50%", marginTop: "10px", height: "250px"}} 
                      src={photOne} 
+                     alt="imageOne"
                     />
                 </div>
               </div>
-              <div>
+              <div className="sectionTwo" >
                 <div>
                     <img
-                     style={{ width: "80%", height: "110%", color: "green",  borderRadius: "50%" }} 
+                     style={{ width: "500px", marginRight: "50px", borderRadius: "50%", marginTop: "30px", height: "250px"}}  
                      src={photTwo} 
                     />
                 </div>
@@ -48,8 +50,9 @@ export default function About() {
                         powered by a community of learners and educators from all walks of life.
                     </p>
                 </div>
-              </div>  
+              </div>
             </div>
+            <Footer />
         </div>
     )
 }

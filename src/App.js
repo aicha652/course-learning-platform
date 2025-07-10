@@ -8,6 +8,8 @@ import Login from './components/Login';
 import SignUp from './components/SignUp';
 import Profile from './pages/Profile';
 import Dashboard from './pages/Admin/Dashboard';
+import AddCourse from './pages/Admin/AddCourse';
+import AdminCourses from './pages/Admin/adminCourses';
 
 function App() {
   return (
@@ -21,8 +23,8 @@ function App() {
         <Route path="/signup" element={<SignUp />} />
         <Route path="/profile" element={<Profile />} />
         <Route path="/dashboard" element={<Dashboard />} />
-        <Route path="/courses" element={<Courses />} />
-        <Route />
+        <Route path="/adminCourses" element={<AdminCourses />} />
+        <Route path="/AddCourse" element={<AddCourse />} />
       </Routes>
     </div>
   );
