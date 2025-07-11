@@ -20,7 +20,7 @@ export default function Dashboard() {
                 <h4 className={`main-container${location.pathname == "/courses"? "bg" : "normalbg"}`} ><RiBookShelfFill /> All Courses</h4>
                 </Link>
                 <Link to="/AddCourse" ><h4><LiaSwatchbookSolid /> Add Course</h4></Link>
-                <h4 style={{ marginLeft:"-45px" }} ><FaUsersBetweenLines /> Users</h4>
+                <Link to="/Users"><h4 style={{ marginLeft:"-45px" }} ><FaUsersBetweenLines /> Users</h4></Link>
                 <h4 style={{ marginLeft:"-30px" }} ><IoSettings /> Settings</h4>
            </div>
         </>

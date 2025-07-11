@@ -15,15 +15,12 @@ export default function AddCourse() {
         level: ""
     })
 
-    const[courses, setCourses] = useState([])
-
-    const[imageUrl, setImageUrl] = useState(null)
-    //const[pdfUrl, setPdfUrl] = useState(null)
+    let url = null
     
     function handleImageChange(event) {
         const imageFile = event.target.files[0]
-        setInputForms({...inputForms, image: imageFile})
-        setImageUrl(URL.createObjectURL(imageFile))
+        url = URL.createObjectURL(imageFile)
+        setInputForms({...inputForms, image: url})
     }
 
     function handleSubmitClick(event) {
@@ -39,10 +36,12 @@ export default function AddCourse() {
             duration: inputForms.duration,
             level: inputForms.level
         }
-        setCourses([...courses, newCourse])
-        localStorage.setItem("courses", JSON.stringify(courses))
+        const storedCourses = JSON.parse(localStorage.getItem("courses")) || []
+        const updatedCourse = [...storedCourses, newCourse]
+        localStorage.setItem("courses", JSON.stringify(updatedCourse))
         alert("course added successfully")
-        console.log(courses)
+
+        console.log(newCourse)
     }
 
     return(
@@ -79,9 +78,9 @@ export default function AddCourse() {
                      required
                     />
                     
-                    {imageUrl &&
+                    {url &&
                      <img 
-                      src={imageUrl}
+                      src={url}
                       style={{ width: "200px", height: "auto", margin: "10px 0" }}
                      />
                     }
@@ -100,7 +99,9 @@ export default function AddCourse() {
                      type="file"
                      accept="application/pdf"
                      onChange={(event) => {
-                        setInputForms({...inputForms, file: event.target.files[0]})
+                        const pdfFile = event.target.files[0]
+                        let urlPdf = URL.createObjectURL(pdfFile)
+                        setInputForms({...inputForms, file: urlPdf})
                      }}
                      required
                     />

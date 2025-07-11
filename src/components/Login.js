@@ -11,7 +11,7 @@ export default function Login() {
     function handleLogin(e) {
         e.preventDefault()
         
-        const storedUser = JSON.parse(localStorage.getItem("user"))
+        const storedUser = JSON.parse(localStorage.getItem("users"))
         
         const admin = {name: "aicha", email: "aicha@gmail.com", password: "1234", role: "admin"}
         localStorage.setItem("admin", JSON.stringify(admin))

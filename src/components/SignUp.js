@@ -16,7 +16,7 @@ export default function SignUp() {
 
         const admin = {name: "aicha", email: "aicha@gmail.com", password: "1234", role: "admin"}
 
-        localStorage.setItem("user", JSON.stringify(newUser))
+        localStorage.setItem("users", JSON.stringify(newUser))
         
 
         navigate("/login")

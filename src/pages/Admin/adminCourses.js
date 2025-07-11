@@ -1,16 +1,16 @@
 import { useState, useEffect } from "react"
 import Dashboard from "./Dashboard"
+import { FaPencilAlt } from "react-icons/fa"
+import { MdDelete } from "react-icons/md"
 
 
 export default function AdminCourses() {
-    const[existingCourses, setExistingCourses] = useState([])
+    const[allCourses, setAllCourses] = useState([])
     
     useEffect(() =>{
-        //console.log(localStorage.getItem("courses"))
-        const anotherCourse = JSON.parse(localStorage.getItem("courses"))
-        console.log(anotherCourse)
-        setExistingCourses(anotherCourse)
-        console.log(existingCourses)
+        const existingCourse = JSON.parse(localStorage.getItem("courses"))
+        
+        setAllCourses(existingCourse)
     }, [])
 
     return(
@@ -18,7 +18,7 @@ export default function AdminCourses() {
           <Dashboard />
           <div style={{ marginLeft: "250px" }}>
             <p>Courses Pages</p>
-           {existingCourses.length == 0 ?
+           {allCourses.length == 0 ?
               (<p>No Course added yet</p>) 
                 :
               (<table>
@@ -32,20 +32,33 @@ export default function AdminCourses() {
                         <th>Category</th>
                         <th>duration</th>
                         <th>Level</th>
+                        <th>Actions</th>
                     </tr>
                 </thead>
                 <tbody>
-                    {existingCourses.map((course, index) =>{
+                    {allCourses.map((course, index) =>{
+                      return(
                         <tr key={index}>
-                            <td>{course.title}</td>
+                            <td style={{ color: "black" }} >{course.title}</td>
                             <td>{course.description}</td>
-                            <td>{course.image}</td>
-                            <td>{course.video}</td>
-                            <td>{course.file}</td>
+                            <td>
+                              {course.image && <img src={course.image} alt="Course" width="80" />}
+                            </td>
+                            <td>
+                             <a href={course.video} target="_blank" rel="noreferrer">Watch</a>
+                            </td>
+                            <td>
+                             <a href={course.file} target="_blank" rel="noreferrer">PDF</a>
+                            </td>
                             <td>{course.category}</td>
                             <td>{course.duration}</td>
                             <td>{course.level}</td>
+                            <td>
+                              <FaPencilAlt />
+                              <MdDelete />
+                            </td>
                         </tr>
+                      )
                     })}
                 </tbody>
               </table>)
