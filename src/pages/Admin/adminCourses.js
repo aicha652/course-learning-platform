@@ -18,7 +18,7 @@ export default function AdminCourses() {
           <Dashboard />
           <div style={{ marginLeft: "250px" }}>
             <p>Courses Pages</p>
-           {allCourses.length == 0 ?
+           {!allCourses ?
               (<p>No Course added yet</p>) 
                 :
               (<table>

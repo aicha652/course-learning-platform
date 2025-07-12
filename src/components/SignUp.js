@@ -12,11 +12,16 @@ export default function SignUp() {
     function handleSignup(e) {
         e.preventDefault()
 
-        const newUser = {name, email, password, role:"user"}
-
         const admin = {name: "aicha", email: "aicha@gmail.com", password: "1234", role: "admin"}
 
-        localStorage.setItem("users", JSON.stringify(newUser))
+        const storedUsers = JSON.parse(localStorage.getItem("users")) || []
+        const newUser = {
+          name: name, 
+          email: email, 
+          password: password, 
+          role:"user"}
+        const updatedUsers = [...storedUsers, newUser]
+        localStorage.setItem("users", JSON.stringify(updatedUsers))
         
 
         navigate("/login")

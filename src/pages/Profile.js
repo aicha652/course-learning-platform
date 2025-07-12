@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom"
 import {useEffect} from "react"
 
 export default function Profile() {
-    const user = JSON.parse(localStorage.getItem("user"))
+    const user = JSON.parse(localStorage.getItem("currentUser"))
     const isLogged = JSON.parse(localStorage.getItem("isLogged"))
     const navigate = useNavigate()
 
@@ -16,9 +16,9 @@ export default function Profile() {
     return(
         <>
            <Navbar />
-           <div>
-            <h2>Welcome, {user?.name}</h2>
-            <p>Email: {user?.email}</p>
+           <div style={{ marginTop: "100px" }}>
+            <h2>Welcome, {user.name}</h2>
+            <p>Email: {user.email}</p>
            </div> 
         </>
     )
