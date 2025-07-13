@@ -6,12 +6,36 @@ import { MdDelete } from "react-icons/md"
 
 export default function AdminCourses() {
     const[allCourses, setAllCourses] = useState([])
-    
+
     useEffect(() =>{
         const existingCourse = JSON.parse(localStorage.getItem("courses"))
         
         setAllCourses(existingCourse)
     }, [])
+    
+
+    function handleDelete(IndexCourse) {
+      const confirmDelete = window.confirm("Do you really want to delete this course?")
+
+      if(confirmDelete){
+        const storedCourses = JSON.parse(localStorage.getItem("courses")) || []
+
+        const filteredCourses = storedCourses.filter((_, index) => index !== IndexCourse)
+
+        localStorage.setItem("courses", JSON.stringify(filteredCourses))
+
+        setAllCourses(filteredCourses)
+
+        console.log(allCourses)
+      }
+      else {
+        return;
+      }
+
+    }
+
+
+    
 
     return(
         <>
@@ -55,7 +79,7 @@ export default function AdminCourses() {
                             <td>{course.level}</td>
                             <td>
                               <FaPencilAlt />
-                              <MdDelete />
+                              <MdDelete onClick={() =>{ handleDelete(index) }} />
                             </td>
                         </tr>
                       )
