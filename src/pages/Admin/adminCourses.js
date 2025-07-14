@@ -2,10 +2,12 @@ import { useState, useEffect } from "react"
 import Dashboard from "./Dashboard"
 import { FaPencilAlt } from "react-icons/fa"
 import { MdDelete } from "react-icons/md"
+import "../../styles/adminCourses.css"
 
 
 export default function AdminCourses() {
     const[allCourses, setAllCourses] = useState([])
+    const[showPopUp, setShowPopUp] = useState(false)
 
     useEffect(() =>{
         const existingCourse = JSON.parse(localStorage.getItem("courses"))
@@ -15,22 +17,17 @@ export default function AdminCourses() {
     
 
     function handleDelete(IndexCourse) {
-      const confirmDelete = window.confirm("Do you really want to delete this course?")
+      const storedCourses = JSON.parse(localStorage.getItem("courses")) || []
 
-      if(confirmDelete){
-        const storedCourses = JSON.parse(localStorage.getItem("courses")) || []
+      const filteredCourses = storedCourses.filter((_, index) => index !== IndexCourse)
 
-        const filteredCourses = storedCourses.filter((_, index) => index !== IndexCourse)
+      localStorage.setItem("courses", JSON.stringify(filteredCourses))
 
-        localStorage.setItem("courses", JSON.stringify(filteredCourses))
+      setAllCourses(filteredCourses)
 
-        setAllCourses(filteredCourses)
+      console.log(allCourses)
 
-        console.log(allCourses)
-      }
-      else {
-        return;
-      }
+      setShowPopUp(false)
 
     }
 
@@ -79,7 +76,16 @@ export default function AdminCourses() {
                             <td>{course.level}</td>
                             <td>
                               <FaPencilAlt />
-                              <MdDelete onClick={() =>{ handleDelete(index) }} />
+                              <MdDelete onClick={() =>{ setShowPopUp(true) }} />
+                              {showPopUp &&
+                               <div className="popup">                 
+                                   <div className="buttons">
+                                        Do you really want to delete this course?
+                                        <button onClick={() => { setShowPopUp(false)}}>Cancel</button>
+                                        <button onClick={()=>{handleDelete(index)}} >Delete</button>
+                                   </div>
+                               </div>
+                               }
                             </td>
                         </tr>
                       )

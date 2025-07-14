@@ -1,0 +1,20 @@
+.popup{
+   position: fixed;
+   width: 100%;
+   height: 100%;
+   background-color: rgba(0, 0, 0, 0.484);
+   left: 0;
+   top: 0;
+}
+
+.buttons {
+    width: 350px;
+    border: 1px solid #fff;
+    margin-top: 150px;
+    margin-left: 450px;
+    background: #fff;
+    border-radius: 6px;
+    position: absolute;
+    text-align: center;
+    background: #81a981;
+}
