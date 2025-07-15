@@ -15,12 +15,20 @@ export default function AddCourse() {
         level: ""
     })
 
+    const [pdfBase64, setPdfBase64] = useState(null);
+
     let url = null
     
     function handleImageChange(event) {
         const imageFile = event.target.files[0]
-        url = URL.createObjectURL(imageFile)
-        setInputForms({...inputForms, image: url})
+        const reader = new FileReader()
+
+        reader.onload = () => {
+            setInputForms({...inputForms, image: reader.result})
+        }
+
+        if(imageFile) reader.readAsDataURL(imageFile)
+      
     }
 
     function handleSubmitClick(event) {
@@ -31,7 +39,7 @@ export default function AddCourse() {
             description: inputForms.description,
             image: inputForms.image,
             video: inputForms.video,
-            file: inputForms.file,
+            file: pdfBase64,
             category: inputForms.category,
             duration: inputForms.duration,
             level: inputForms.level
@@ -100,8 +108,11 @@ export default function AddCourse() {
                      accept="application/pdf"
                      onChange={(event) => {
                         const pdfFile = event.target.files[0]
-                        let urlPdf = URL.createObjectURL(pdfFile)
-                        setInputForms({...inputForms, file: urlPdf})
+                        const reader = new FileReader();
+                        reader.onload = () => {
+                            setPdfBase64(reader.result); 
+                        }
+                        if (pdfFile) reader.readAsDataURL(pdfFile);
                      }}
                      required
                     />

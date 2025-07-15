@@ -2,7 +2,7 @@
    position: fixed;
    width: 100%;
    height: 100%;
-   background-color: rgba(0, 0, 0, 0.484);
+   background-color: rgba(0, 0, 0, 0.158);
    left: 0;
    top: 0;
 }
@@ -17,4 +17,17 @@
     position: absolute;
     text-align: center;
     background: #81a981;
+}
+
+.editForm {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    left: 0;
+    top: 0;
+    background: rgba(0, 0, 0, 0.292);
+}
+
+form {
+    background-color: rgba(239, 246, 239, 0.397);
 }

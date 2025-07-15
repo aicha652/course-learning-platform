@@ -8,6 +8,9 @@ import "../../styles/adminCourses.css"
 export default function AdminCourses() {
     const[allCourses, setAllCourses] = useState([])
     const[showPopUp, setShowPopUp] = useState(false)
+    const[editingCourse, setEditingCourse] = useState(null)
+    const[previewImage, setPreviewImage] = useState(null)
+    const[previewPdf, setPreviewPdf] = useState(null)
 
     useEffect(() =>{
         const existingCourse = JSON.parse(localStorage.getItem("courses"))
@@ -31,8 +34,35 @@ export default function AdminCourses() {
 
     }
 
+    function handleEdit(course) {
+      setEditingCourse(course)
+      setPreviewImage(course.image)
+      setPreviewPdf(course.file)
+    }
 
-    
+
+    function handleImageEdit(event) {
+      const imageFile = event.target.files[0]
+      const reader = new FileReader()
+
+      reader.onload = () => {
+        setEditingCourse({...editingCourse, image: reader.result})
+        setPreviewImage(reader.result)
+      }
+      if(imageFile) reader.readAsDataURL(imageFile)
+    }
+
+    function handleEditClick() {
+      const storedCourses = JSON.parse(localStorage.getItem("courses")) || []
+      const editCourses = storedCourses.map((course, index) =>
+        course.title == editingCourse.title ? editingCourse : course
+      )
+
+      localStorage.setItem("courses", JSON.stringify(editCourses))
+
+      setAllCourses(editCourses)
+
+    }
 
     return(
         <>
@@ -75,7 +105,78 @@ export default function AdminCourses() {
                             <td>{course.duration}</td>
                             <td>{course.level}</td>
                             <td>
-                              <FaPencilAlt />
+                              <FaPencilAlt onClick={() => {handleEdit(course)}} />
+                              {editingCourse &&
+                              <div className="editForm">
+                               <form onSubmit={handleEditClick} >
+                                <input
+                                 type="text" 
+                                 value={editingCourse.title} 
+                                 onChange={(event)=>{ setEditingCourse({...editingCourse, title: event.target.value}) }}
+                                />
+                                <textarea 
+                                 value={editingCourse.description}
+                                 onChange={(event) => {setEditingCourse({...editingCourse, description: event.target.value})}}
+                                />
+                                <input 
+                                 type="file"
+                                 accept="image/*"
+                                 onChange={handleImageEdit}
+                                />
+                                {previewImage &&
+                                 <img 
+                                  src={previewImage} 
+                                  alt="PreviewImage" 
+                                  style={{ height: "100px", width: "150px", marginLeft: "10px" }}  
+                                />
+                                }
+                                <input 
+                                 type="url"
+                                 value={editingCourse.video}
+                                 onChange={(event) => {setEditingCourse({...editingCourse, video: event.target.value})}}
+                                />
+                                <input 
+                                 type="file"
+                                 accept="application/pdf"
+                                 onChange={(event) => { 
+                                  const pdfFile = event.target.files[0]
+                                  const reader = new FileReader();
+
+                                  reader.onload = () => {
+                                    setEditingCourse({ ...editingCourse, file: reader.result });
+                                    setPreviewPdf(reader.result);
+                                  }
+                                  if (pdfFile) reader.readAsDataURL(pdfFile);
+                                  }}
+                                />
+                                <select 
+                                 value={editingCourse.category}
+                                 onChange={(event) => { setEditingCourse({...editingCourse, category: event.target.value}) }}
+                                >
+                                  <option value="">Select Category</option>
+                                  <option value="programming">Programming</option>
+                                  <option value="design">Design</option>
+                                  <option value="language">Language</option>
+                                </select>
+                                <input
+                                 type="number"
+                                 value={editingCourse.duration}
+                                 onChange={(event) =>{setEditingCourse({...editingCourse, duration: event.target.value})}} 
+                                />
+                                <select
+                                 value={editingCourse.level}
+                                 onChange={(event) => {setEditingCourse({...editingCourse, level: event.target.value})}}
+                                >
+                                  <option value="">Select Level</option>
+                                  <option value="beginner">Beginner</option>
+                                  <option value="intermediate">Intermediate</option>
+                                  <option value="advanced">Advanced</option>
+                                </select>
+
+                                <button type="submit">Edit</button>
+                               </form>
+                              </div>
+                              }  
                               <MdDelete onClick={() =>{ setShowPopUp(true) }} />
                               {showPopUp &&
                                <div className="popup">                 
