@@ -1,8 +1,8 @@
 import { useState, useEffect } from "react"
-import Dashboard from "./Dashboard"
 import { FaPencilAlt } from "react-icons/fa"
 import { MdDelete } from "react-icons/md"
 import "../../styles/adminCourses.css"
+import SideBar from "./SideBar"
 
 
 export default function AdminCourses() {
@@ -11,6 +11,7 @@ export default function AdminCourses() {
     const[editingCourse, setEditingCourse] = useState(null)
     const[previewImage, setPreviewImage] = useState(null)
     const[previewPdf, setPreviewPdf] = useState(null)
+    const[selectedDeleteId, setSelectedDeleteId] = useState(null)
 
     useEffect(() =>{
         const existingCourse = JSON.parse(localStorage.getItem("courses"))
@@ -19,16 +20,15 @@ export default function AdminCourses() {
     }, [])
     
 
-    function handleDelete(IndexCourse) {
+    function handleDelete(courseId) {
+      console.log(courseId)
       const storedCourses = JSON.parse(localStorage.getItem("courses")) || []
 
-      const filteredCourses = storedCourses.filter((_, index) => index !== IndexCourse)
+      const filteredCourses = storedCourses.filter((course) => course.id !== courseId)
 
       localStorage.setItem("courses", JSON.stringify(filteredCourses))
 
       setAllCourses(filteredCourses)
-
-      console.log(allCourses)
 
       setShowPopUp(false)
 
@@ -43,13 +43,9 @@ export default function AdminCourses() {
 
     function handleImageEdit(event) {
       const imageFile = event.target.files[0]
-      const reader = new FileReader()
-
-      reader.onload = () => {
-        setEditingCourse({...editingCourse, image: reader.result})
-        setPreviewImage(reader.result)
-      }
-      if(imageFile) reader.readAsDataURL(imageFile)
+      const urlImage = URL.createObjectURL(imageFile)
+      setEditingCourse({...editingCourse, image: urlImage})
+      setPreviewImage(urlImage)
     }
 
     function handleEditClick() {
@@ -66,7 +62,7 @@ export default function AdminCourses() {
 
     return(
         <>
-          <Dashboard />
+          <SideBar />
           <div style={{ marginLeft: "250px" }}>
             <p>Courses Pages</p>
            {!allCourses ?
@@ -87,9 +83,9 @@ export default function AdminCourses() {
                     </tr>
                 </thead>
                 <tbody>
-                    {allCourses.map((course, index) =>{
+                    {allCourses.map((course) =>{
                       return(
-                        <tr key={index}>
+                        <tr key={course.id}>
                             <td style={{ color: "black" }} >{course.title}</td>
                             <td>{course.description}</td>
                             <td>
@@ -113,10 +109,12 @@ export default function AdminCourses() {
                                  type="text" 
                                  value={editingCourse.title} 
                                  onChange={(event)=>{ setEditingCourse({...editingCourse, title: event.target.value}) }}
+                                 required
                                 />
                                 <textarea 
                                  value={editingCourse.description}
                                  onChange={(event) => {setEditingCourse({...editingCourse, description: event.target.value})}}
+                                 required
                                 />
                                 <input 
                                  type="file"
@@ -134,24 +132,22 @@ export default function AdminCourses() {
                                  type="url"
                                  value={editingCourse.video}
                                  onChange={(event) => {setEditingCourse({...editingCourse, video: event.target.value})}}
+                                 required
                                 />
                                 <input 
                                  type="file"
                                  accept="application/pdf"
                                  onChange={(event) => { 
                                   const pdfFile = event.target.files[0]
-                                  const reader = new FileReader();
-
-                                  reader.onload = () => {
-                                    setEditingCourse({ ...editingCourse, file: reader.result });
-                                    setPreviewPdf(reader.result);
-                                  }
-                                  if (pdfFile) reader.readAsDataURL(pdfFile);
+                                  const urlPdf = URL.createObjectURL(pdfFile)
+                                  setEditingCourse({...editingCourse, file: urlPdf})
+                                  setPreviewPdf(urlPdf)
                                   }}
                                 />
                                 <select 
                                  value={editingCourse.category}
                                  onChange={(event) => { setEditingCourse({...editingCourse, category: event.target.value}) }}
+                                 required
                                 >
                                   <option value="">Select Category</option>
                                   <option value="programming">Programming</option>
@@ -162,10 +158,12 @@ export default function AdminCourses() {
                                  type="number"
                                  value={editingCourse.duration}
                                  onChange={(event) =>{setEditingCourse({...editingCourse, duration: event.target.value})}} 
+                                 required
                                 />
                                 <select
                                  value={editingCourse.level}
                                  onChange={(event) => {setEditingCourse({...editingCourse, level: event.target.value})}}
+                                 required
                                 >
                                   <option value="">Select Level</option>
                                   <option value="beginner">Beginner</option>
@@ -177,13 +175,16 @@ export default function AdminCourses() {
                                </form>
                               </div>
                               }  
-                              <MdDelete onClick={() =>{ setShowPopUp(true) }} />
-                              {showPopUp &&
+                              <MdDelete onClick={() =>{ 
+                                setSelectedDeleteId(course.id)
+                                setShowPopUp(true) }} 
+                              />
+                              {showPopUp && selectedDeleteId == course.id &&
                                <div className="popup">                 
                                    <div className="buttons">
                                         Do you really want to delete this course?
                                         <button onClick={() => { setShowPopUp(false)}}>Cancel</button>
-                                        <button onClick={()=>{handleDelete(index)}} >Delete</button>
+                                        <button onClick={()=>{handleDelete(course.id)}} >Delete</button>
                                    </div>
                                </div>
                                }

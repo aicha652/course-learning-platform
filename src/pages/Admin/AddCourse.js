@@ -1,6 +1,6 @@
 import "../../styles/AddCourse.css"
-import Dashboard from "./Dashboard"
 import { useState } from "react"
+import SideBar from "./SideBar"
 
 
 export default function AddCourse() {
@@ -15,19 +15,23 @@ export default function AddCourse() {
         level: ""
     })
 
-    const [pdfBase64, setPdfBase64] = useState(null);
+    //const [pdfBase64, setPdfBase64] = useState(null);
 
     let url = null
     
     function handleImageChange(event) {
         const imageFile = event.target.files[0]
-        const reader = new FileReader()
+        const urlImage = URL.createObjectURL(imageFile)
+        setInputForms({...inputForms, image: urlImage})
+        
+        
+        //const reader = new FileReader()
 
-        reader.onload = () => {
-            setInputForms({...inputForms, image: reader.result})
-        }
+        //reader.onload = () => {
+        //    setInputForms({...inputForms, image: reader.result})
+        //}
 
-        if(imageFile) reader.readAsDataURL(imageFile)
+        //if(imageFile) reader.readAsDataURL(imageFile)
       
     }
 
@@ -35,11 +39,12 @@ export default function AddCourse() {
         event.preventDefault()
 
         const newCourse = {
+            id: Date.now(),
             title: inputForms.title,
             description: inputForms.description,
             image: inputForms.image,
             video: inputForms.video,
-            file: pdfBase64,
+            file: inputForms.file,
             category: inputForms.category,
             duration: inputForms.duration,
             level: inputForms.level
@@ -54,7 +59,7 @@ export default function AddCourse() {
 
     return(
         <>
-           <Dashboard />
+           <SideBar />
            <div>
                 <form 
                  onSubmit={handleSubmitClick}
@@ -108,11 +113,14 @@ export default function AddCourse() {
                      accept="application/pdf"
                      onChange={(event) => {
                         const pdfFile = event.target.files[0]
-                        const reader = new FileReader();
-                        reader.onload = () => {
-                            setPdfBase64(reader.result); 
-                        }
-                        if (pdfFile) reader.readAsDataURL(pdfFile);
+                        const urlPdf = URL.createObjectURL(pdfFile)
+                        setInputForms({...inputForms, file: urlPdf})
+
+                        //const reader = new FileReader();
+                        //reader.onload = () => {
+                        //    setPdfBase64(reader.result); 
+                        //}
+                        //if (pdfFile) reader.readAsDataURL(pdfFile);
                      }}
                      required
                     />

@@ -1,5 +1,5 @@
-import Dashboard from "./Dashboard";
 import { useState, useEffect } from "react"
+import SideBar from "./SideBar"
 
 export default function Users() {
     const[allUsers, setAllUsers] = useState([])
@@ -13,7 +13,7 @@ export default function Users() {
 
     return(
         <>
-          <Dashboard />
+          <SideBar />
           <div>
                {allUsers.length == 0 ?
                 (<div></div>) 
