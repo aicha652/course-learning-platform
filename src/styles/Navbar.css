@@ -1,21 +1,31 @@
 .container {
     display: flex;
-    justify-content: center;
+    justify-content: space-between;
     flex-direction: row;
     width: 100%;
-    background: rgb(191, 206, 191);
-    position: fixed;
+    background: #b0e0e6e3;
+    position: absolute;
     top: 0;
     text-decoration: none;
+}
+
+
+.navlinks {
+    display: flex;
+    justify-content: space-between;
+    flex-direction: row;
+    margin-top: 5px;
 }
 .container h5{
     margin: 20px 20px;
     cursor: pointer;
+    font-size: 17px;
+    font-weight: 400;
 }
 .container button{
     margin-left: 350px;
     margin-right: -350px;
-    margin-top: 10px;
+    margin-top: 15px;
     padding: 10px;
     height: 35px;
     border: 0px solid #fff;
@@ -23,9 +33,16 @@
     width: 100px;
     cursor: pointer;
     color: white;
+    background-color: #029cf5;
 }
 
-.nav-link {
+.nav-link{
     text-decoration: none;
     color: #fff;
+}
+
+.active-link {
+    border-bottom: 2px solid #029cf5;
+    color: #029cf5;
+    font-weight: bold;
 }
