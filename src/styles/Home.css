@@ -39,3 +39,67 @@ img {
     height: 40px;
     padding: 3px 3px;
 }
+.ValuesSection {
+    padding: 5px 5px;
+    margin-left: 550px;
+    margin-top: 30px;
+    margin-bottom: 100px;
+}
+.ValuesSection p {
+    width: 120px;
+    border: 1px solid #029cf5;
+    border-radius: 20px;
+    color: #004268;
+    text-align: center;
+    margin-top: -4px;
+    font-weight: bold;
+    font-size: 18px;
+    background-color: #029cf568;
+}
+.ValuesSection h5 {
+    margin-bottom: 10px;
+    width: 100%;
+    margin-left: -280px;
+    font-weight: 400;
+    font-size: 15px;
+}
+.ValuesSection .cards{
+    margin-bottom: 20px;
+    width: 1000px;
+    margin-left: -400px;
+}
+
+.ValuesSection .cards .card{
+    display: flex;
+    justify-content: start;
+    flex-direction: column;
+    flex-wrap: wrap;
+    width: 700px;
+    height: 300px;
+    padding: 5px 5px;
+    color: black;
+    background-color: rgb(239, 237, 237);
+    border: 1px solid rgb(230, 230, 230);
+}
+
+.ValuesSection .cards .card:hover{
+    background-color: #95e7f5;
+    transform: translateY(10px);
+}
+
+.ValuesSection .cards .card h6 {
+    font-weight: 500;
+    font-size: 22px;
+    margin-left: -6px;
+    margin-top: 10px;
+    color: #004268;
+}
+
+.ValuesSection .cards .card h5 {
+    margin-left: 6px;
+    text-align: left;
+    margin-top: -10px;
+    font-size: 17px;
+    line-height: 25px;
+    padding: 3px 3px;
+}
