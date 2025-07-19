@@ -15,7 +15,7 @@ export default function Footer() {
                  alt="logo" 
                  style={{ width: "100px", height: "100px", marginTop: "15px", marginLeft: "-300px"}}
                 />
-                <p style={{ width: "350px", marginLeft: "-30px", fontSize: "16px" }}>
+                <p style={{ width: "350px", marginLeft: "-30px", fontSize: "16px", textAlign: "left" }}>
                     We are a modern e-learning platform committed to making education accessible, 
                    flexible, and impactful. Learn at your own pace, anytime, anywhere.
                 </p>
