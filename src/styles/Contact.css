@@ -1,0 +1,32 @@
+.section {
+    margin-bottom: 100px;    
+}
+
+.contactContainer {
+    display: flex;
+    flex-direction: row;
+    margin-top: 180px;
+    margin-left: -150px;
+    margin-bottom: 60px;
+}
+.contactContainer .sectionOne form{
+    border: 1px solid #fff;
+    background: #f4f6f7;
+    border-bottom-left-radius: 40px;
+    box-shadow: 0px 4px 6px 3px rgba(128, 128, 128, 0.28) ;
+}
+.contactContainer p {
+    color: black;
+}
+.contactContainer input {
+    margin-bottom: 20px;
+}
+.contactContainer textarea {
+    height: 150px;
+}
+.contactContainer button {
+    background-color: rgb(0, 157, 255);
+    width: 100px;
+    height: 40px;
+    width: 120px;
+}
