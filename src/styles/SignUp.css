@@ -2,18 +2,23 @@
     display: flex;
     justify-content: center;
     flex-direction: column;
-    width: 340px;
+    width: 380px;
     border: 1px solid #fff;
     height: 450px;
     border-radius: 10px;
     margin-top: 100px;
-    margin-left: 480px;
+    margin-left: 20px;
     margin-bottom: 400px;
     background-color: #fff;
+    padding: 5px 15px;
 }
-
+.signupContainer form {
+    border: 1px solid #c3cacd;
+    background-color: #bacdd5;
+}
 .signupContainer p {
     font-size: 27px;
+    color: black;
 }
 
 .signupContainer h6 {
@@ -33,12 +38,12 @@ label {
 }
 
 button {
-    width: 320px;
+    width: 330px;
     margin-left: 10px;
-    border: 1px solid green;
+    border: 1px solid #029cf5;
     border-radius: 30px;
     height: 30px;
-    background: green;
+    background: #029cf5;
     margin-top: 25px;
     cursor: pointer;
     color: #fff;
@@ -56,5 +61,5 @@ button {
 
 .link {
     text-decoration: none;
-    color : green;
+    color : #029cf5;
 }

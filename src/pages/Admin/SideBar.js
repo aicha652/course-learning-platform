@@ -2,10 +2,11 @@ import "../../styles/Sidebar.css"
 import { RiBookShelfFill } from "react-icons/ri";
 import { LiaSwatchbookSolid } from "react-icons/lia";
 import { FaUsersBetweenLines } from "react-icons/fa6";
-import { RxDashboard } from "react-icons/rx";
+import { MdDashboard } from "react-icons/md";
 import { HiOutlineLogout } from "react-icons/hi";
-import { Link, useLocation, useNavigate } from "react-router-dom";
+import { NavLink, useLocation, useNavigate } from "react-router-dom";
 import { useEffect } from "react";
+import AdminNavBar from "./AdminNavBar";
 
 
 
@@ -27,16 +28,26 @@ export default function SideBar() {
 
     return(
         <>
+           <AdminNavBar />
            <div className="sidebar">
-                <Link to="/dashboard" className="link" >
-                <h4 className={`main-container${location.pathname == "/dashboard"? "bg" : "normalbg"}`} ><RxDashboard />Dashboard</h4>
-                </Link>
-                <Link to="/adminCourses" className="link">
-                <h4 className={`main-container${location.pathname == "/courses"? "bg" : "normalbg"}`} ><RiBookShelfFill /> All Courses</h4>
-                </Link>
-                <Link to="/AddCourse" ><h4><LiaSwatchbookSolid /> Add Course</h4></Link>
-                <Link to="/Users"><h4 style={{ marginLeft:"-45px" }} ><FaUsersBetweenLines /> Users</h4></Link>
-                <h4 style={{ marginLeft:"-30px" }} onClick={handleLogout} ><HiOutlineLogout />Logout</h4>
+                <NavLink to="/dashboard" className={({isActive}) => isActive? "link active" : "link"} >
+                <h4><MdDashboard /> Dashboard</h4>
+                </NavLink>
+
+                <NavLink to="/adminCourses" className={({isActive})=>isActive? "link active" : "link"}>
+                <h4><RiBookShelfFill /> All Courses</h4>
+                </NavLink>
+
+                <NavLink to="/AddCourse" className={({isActive}) => isActive? "link active" : "link"}>
+                <h4><LiaSwatchbookSolid /> Add Course</h4>
+                </NavLink>
+
+                <NavLink to="/Users" className={({isActive}) => isActive? "link active" : "link"}>
+                <h4 style={{ marginLeft:"-70px" }} ><FaUsersBetweenLines /> Users</h4>
+                </NavLink>
+
+                
+                <h4 style={{ marginLeft:"-63px", color: "#029cf5" }} onClick={handleLogout} ><HiOutlineLogout />Logout</h4>
            </div>
         </>
     )

@@ -39,8 +39,8 @@ export default function Login() {
     return(
         <>
           <Navbar />
-          <form onSubmit={handleLogin}>
-           <div className="loginContainer">
+          <div className="loginContainer">
+            <form onSubmit={handleLogin}>
               <p>Welcome back</p>
               <h6>Please Enter Your Details</h6>
               <label >Email: </label>
@@ -68,8 +68,8 @@ export default function Login() {
               <div className="detail" >
                 <h5>Don't have an account? <Link to="/signup" className="link">Sign UP</Link> </h5>
               </div>
-            </div>
-          </form>
+            </form>
+          </div>
         </>
     )
 }

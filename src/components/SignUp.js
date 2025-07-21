@@ -30,8 +30,8 @@ export default function SignUp() {
     return(
         <>
           <Navbar />
-          <form onSubmit={handleSignup}>
-           <div className="signupContainer">
+          <div className="signupContainer">
+            <form onSubmit={handleSignup}>
               <p>Sign Up</p>
               <label >Name: </label>
               <input 
@@ -68,8 +68,8 @@ export default function SignUp() {
               <div className="detail" >
                 <h5>Already have an account? <Link to="/login" className="link">Log In</Link> </h5>
               </div>
-            </div>
-          </form>
+            </form>
+          </div>
         </>
     )
 }
