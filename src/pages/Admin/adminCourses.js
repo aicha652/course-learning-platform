@@ -185,6 +185,7 @@ export default function AdminCourses() {
                                 setSelectedDeleteId(course.id)
                                 setShowPopUp(true) }} 
                               />
+                              {console.log(showPopUp,selectedDeleteId, course.id)}
                               {showPopUp && selectedDeleteId == course.id &&
                                <div className="popup">                 
                                   <div className="content">
@@ -197,7 +198,7 @@ export default function AdminCourses() {
                                     </div>
                                   </div>
                                </div>
-                               }
+                              }
                             </td>
                         </tr>
                       )

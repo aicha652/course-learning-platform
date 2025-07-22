@@ -18,7 +18,7 @@ export default function Users() {
                {allUsers.length == 0 ?
                 (<div></div>) 
                      :
-                (<div style={{ marginLeft: "250px", marginTop: "80px" }}>
+                (<div style={{ width: "700px", marginLeft: "250px", marginTop: "120px" }}>
                     <table>
                         <thead>
                             <tr>

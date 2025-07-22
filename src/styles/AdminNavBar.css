@@ -1,9 +1,10 @@
 .adminNavBar {
+    position: fixed;
     top: 0;
     width: 100%;
     height: 80px;
     background: #a0dbdc;
     margin-top: -10px;
     border: 1px solid #fff;
-    margin-bottom: -20px;
+    margin-bottom: 40px;
 }

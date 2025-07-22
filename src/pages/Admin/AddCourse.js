@@ -62,6 +62,7 @@ export default function AddCourse() {
            <SideBar />
            <div>
                 <form 
+                 style={{ marginTop: "80px" }}
                  onSubmit={handleSubmitClick}
                 >
                     <input 
