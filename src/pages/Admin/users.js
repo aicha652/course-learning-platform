@@ -22,7 +22,7 @@ export default function Users() {
                     <table>
                         <thead>
                             <tr>
-                                <td>Index</td>
+                                <td>#</td>
                                 <td>Name</td>
                                 <td>Email</td>
                             </tr>

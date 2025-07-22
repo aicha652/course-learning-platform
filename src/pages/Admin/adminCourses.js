@@ -13,6 +13,8 @@ export default function AdminCourses() {
     const[previewPdf, setPreviewPdf] = useState(null)
     const[selectedDeleteId, setSelectedDeleteId] = useState(null)
 
+    let index = 0
+
     useEffect(() =>{
         const existingCourse = JSON.parse(localStorage.getItem("courses"))
         
@@ -50,8 +52,8 @@ export default function AdminCourses() {
 
     function handleEditClick() {
       const storedCourses = JSON.parse(localStorage.getItem("courses")) || []
-      const editCourses = storedCourses.map((course, index) =>
-        course.title == editingCourse.title ? editingCourse : course
+      const editCourses = storedCourses.map((course, id) =>
+        course.id == editingCourse.id ? editingCourse : course
       )
 
       localStorage.setItem("courses", JSON.stringify(editCourses))
@@ -71,6 +73,7 @@ export default function AdminCourses() {
               (<table>
                 <thead>
                     <tr>
+                        <th>#</th>
                         <th>Title</th>
                         <th>Description</th>
                         <th>Image</th>
@@ -86,10 +89,11 @@ export default function AdminCourses() {
                     {allCourses.map((course) =>{
                       return(
                         <tr key={course.id}>
+                            <td>{index++}</td>
                             <td style={{ color: "black" }} >{course.title}</td>
                             <td>{course.description}</td>
                             <td>
-                              {course.image && <img src={course.image} alt="Course" width="80" />}
+                              {course.image && <img src={course.image} alt="Course" style={{width: "130px", height: "80px"}} />}
                             </td>
                             <td>
                              <a href={course.video} target="_blank" rel="noreferrer">Watch</a>
@@ -101,14 +105,16 @@ export default function AdminCourses() {
                             <td>{course.duration}</td>
                             <td>{course.level}</td>
                             <td>
-                              <FaPencilAlt onClick={() => {handleEdit(course)}} />
+                              <FaPencilAlt 
+                               style={{ color: "rgb(0, 157, 255)", marginRight: "10px" }}
+                               onClick={() => {handleEdit(course)}} />
                               {editingCourse &&
                               <div className="editForm">
                                <form onSubmit={handleEditClick} >
                                 <input
                                  type="text" 
                                  value={editingCourse.title} 
-                                 onChange={(event)=>{ setEditingCourse({...editingCourse, title: event.target.value}) }}
+                                 onChange={(event) => {setEditingCourse({...editingCourse, title: event.target.value})}}
                                  required
                                 />
                                 <textarea 
@@ -175,17 +181,21 @@ export default function AdminCourses() {
                                </form>
                               </div>
                               }  
-                              <MdDelete onClick={() =>{ 
+                              <MdDelete style={{ color: "red", fontSize: "20px" }} onClick={() =>{ 
                                 setSelectedDeleteId(course.id)
                                 setShowPopUp(true) }} 
                               />
                               {showPopUp && selectedDeleteId == course.id &&
                                <div className="popup">                 
-                                   <div className="buttons">
-                                        Do you really want to delete this course?
+                                  <div className="content">
+                                    <div>
+                                      <p>Do you really want to delete this course?</p>
+                                    </div>
+                                    <div className="buttons">
                                         <button onClick={() => { setShowPopUp(false)}}>Cancel</button>
-                                        <button onClick={()=>{handleDelete(course.id)}} >Delete</button>
-                                   </div>
+                                        <button className="delete" onClick={()=>{handleDelete(course.id)}} >Delete</button>
+                                    </div>
+                                  </div>
                                </div>
                                }
                             </td>

@@ -75,7 +75,7 @@ export default function Contact() {
                     <img 
                      src={contcatUs}
                      style={{ width: "410px",
-                              marginTop: "19px",
+                              marginTop: "40px",
                               height: "512px",
                               borderTopRightRadius: "40px",
                               boxShadow: "0px 4px 6px 3px rgba(128, 128, 128, 0.28)"

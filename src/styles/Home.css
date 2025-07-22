@@ -81,7 +81,7 @@ img {
     width: 85%;
 }
 
-.cards .card{
+.img-container .cards .card{
     display: flex;
     justify-content: start;
     flex-direction: column;
